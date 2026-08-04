@@ -1,0 +1,86 @@
+generated: '2026-08-04'
+method: searched
+source: https://secure.everlywell.com/.well-known/openid-configuration
+docs: null
+note: >-
+  Everly Health publishes no developer authentication documentation. This profile was
+  read entirely from the anonymously served OpenID Connect Discovery / RFC 8414
+  document on the member login host. Nothing here is derived from an OpenAPI — the
+  company publishes none — and nothing is inferred beyond what the discovery document
+  literally declares.
+summary:
+  types:
+  - oauth2
+  - openIdConnect
+  api_key_in: []
+  oauth2_flows:
+  - authorizationCode
+  - password
+  - refreshToken
+  pkce: true
+  pkce_methods:
+  - S256
+  - plain
+schemes:
+- name: openIdConnect
+  type: openIdConnect
+  openIdConnectUrl: https://secure.everlywell.com/.well-known/openid-configuration
+  issuer: https://secure.everlywell.com
+  sources:
+  - well-known/everly-health-openid-configuration.json
+- name: oauth2
+  type: oauth2
+  issuer: https://secure.everlywell.com
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://secure.everlywell.com/oauth2/authorize
+    tokenUrl: https://secure.everlywell.com/oauth2/token
+    scopes:
+      openid: OpenID Connect authentication
+      public: Public scope declared by the authorization server
+  - flow: password
+    tokenUrl: https://secure.everlywell.com/oauth2/token
+    note: >-
+      The resource owner password credentials grant is declared in
+      grant_types_supported. OAuth 2.1 and RFC 9700 (BCP) deprecate this grant; it is
+      recorded here because the server advertises it, not as a recommendation.
+  sources:
+  - well-known/everly-health-oauth-authorization-server.json
+endpoints:
+  authorization: https://secure.everlywell.com/oauth2/authorize
+  token: https://secure.everlywell.com/oauth2/token
+  revocation: https://secure.everlywell.com/oauth2/revoke
+  introspection: https://secure.everlywell.com/oauth2/introspect
+  userinfo: https://secure.everlywell.com/oauth2/userinfo
+  jwks: https://secure.everlywell.com/jwks/signature
+token_endpoint_auth_methods:
+- client_secret_basic
+- client_secret_post
+response_types:
+- code
+response_modes:
+- query
+- fragment
+- form_post
+subject_types:
+- public
+id_token_signing_alg:
+- RS256
+claims:
+- iss
+- sub
+- aud
+- exp
+- iat
+- name
+- email
+gaps:
+- No public developer portal, API reference, or authentication guide.
+- No client registration endpoint advertised (no RFC 7591 dynamic registration).
+- No /.well-known/oauth-protected-resource (RFC 9728), so no resource-server metadata.
+- Only two scopes declared (openid, public) — no granular resource scopes.
+x-evidence:
+  fetched: '2026-08-04'
+  url: https://secure.everlywell.com/.well-known/openid-configuration
+  http_status: 200
+  content_type: application/json

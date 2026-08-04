@@ -1,0 +1,49 @@
+generated: '2026-08-04'
+method: searched
+source: https://secure.everlywell.com/.well-known/openid-configuration
+docs: null
+note: >-
+  Scopes were read from scopes_supported in the anonymously published OpenID Connect
+  Discovery / RFC 8414 document. Everly Health publishes no scopes or permissions
+  reference page, so descriptions below are the spec-defined meaning of the scope
+  name only — nothing was invented on the provider's behalf.
+schemes:
+- name: oauth2
+  source: well-known/everly-health-openid-configuration.json
+  issuer: https://secure.everlywell.com
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://secure.everlywell.com/oauth2/authorize
+    tokenUrl: https://secure.everlywell.com/oauth2/token
+  - flow: password
+    tokenUrl: https://secure.everlywell.com/oauth2/token
+scopes:
+- scope: openid
+  description: >-
+    Required by OpenID Connect Core 1.0 to request an ID token and identify the
+    authenticated Everlywell member.
+  flows:
+  - authorizationCode
+  - password
+  sources:
+  - well-known/everly-health-openid-configuration.json
+- scope: public
+  description: >-
+    Declared in scopes_supported by the authorization server. Everly Health publishes
+    no definition for it; recorded verbatim without interpretation.
+  flows:
+  - authorizationCode
+  - password
+  sources:
+  - well-known/everly-health-openid-configuration.json
+coverage:
+  scopes_declared: 2
+  granular_resource_scopes: 0
+  note: >-
+    Two scopes total. There is no resource-level scope surface — consent granularity
+    is effectively all-or-nothing for anything beyond OIDC identity.
+x-evidence:
+  fetched: '2026-08-04'
+  url: https://secure.everlywell.com/.well-known/openid-configuration
+  http_status: 200
+  content_type: application/json

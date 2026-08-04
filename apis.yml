@@ -1,18 +1,59 @@
 aid: everly-health
 name: Everly Health
-description: 'Everly Health is a company surfaced via the API Evangelist harvest backlog (source: secondary-market)
-  and added to the network as a stub for full-pipeline profiling.'
+description: 'Everly Health (legal name Everly Well, Inc.) is an Austin, Texas digital
+  health company that operates the Everlywell consumer brand for at-home lab collection
+  and testing, Everly Health Solutions (the former PWNHealth / Home Access Health businesses)
+  for enterprise lab connectivity, clinician-network oversight and results delivery,
+  and the Natalist fertility and pregnancy brand. Its catalog spans daily health, digestive,
+  sexual, hormone and cancer-screening panels, paired with an affiliated telehealth
+  provider network and the Eva AI platform for member engagement, care coordination
+  and support. Everly Health publishes no public developer portal, API reference, SDKs
+  or OpenAPI; the only machine-readable contract it serves anonymously is the OAuth
+  2.0 / OpenID Connect discovery surface behind its member login host.'
+image: https://www.everlywell.com/icons/icon-512x512.png
 url: https://raw.githubusercontent.com/api-evangelist/everly-health/refs/heads/main/apis.yml
 x-type: company
 x-source: harvest:secondary-market
-x-tier: stub
-x-tier-reason: harvest
 specificationVersion: '0.20'
 created: '2026-08-04'
 modified: '2026-08-04'
 tags:
 - Company
-apis: []
+- Health
+- Healthcare
+- Digital Health
+- Diagnostics
+- Lab Testing
+- Telehealth
+- Consumer Health
+- Identity
+apis:
+- aid: everly-health:identity
+  name: Everly Health Identity (OAuth 2.0 / OpenID Connect)
+  description: 'The OAuth 2.0 authorization server and OpenID Connect provider that
+    fronts the Everlywell member account. It is not a documented developer product —
+    Everly Health publishes no API reference for it — but the authorization server
+    advertises itself anonymously via RFC 8414 / OpenID Connect Discovery at
+    https://secure.everlywell.com/.well-known/oauth-authorization-server and
+    /.well-known/openid-configuration, and serves a live JWKS. The discovery document
+    declares the authorize, token, revoke, introspect and userinfo endpoints, the
+    authorization_code / refresh_token / password grants, PKCE (plain and S256), and
+    the openid and public scopes. Everything recorded here was read from those
+    anonymously published documents.'
+  humanURL: https://secure.everlywell.com/.well-known/openid-configuration
+  baseURL: https://secure.everlywell.com
+  tags:
+  - Identity
+  - OAuth
+  - OpenID Connect
+  - Authentication
+  properties:
+  - type: OpenIDConnect
+    url: well-known/everly-health-openid-configuration.json
+  - type: Authentication
+    url: authentication/everly-health-authentication.yml
+  - type: OAuthScopes
+    url: scopes/everly-health-scopes.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
@@ -20,4 +61,43 @@ maintainers:
   email: info@apis.io
 common:
 - type: Website
+  url: https://www.everlywell.com/
+- type: Blog
+  url: https://www.everlywell.com/blog/
+- type: Support
+  url: https://support.everlywell.com/
+- type: HelpCenter
+  url: https://support.everlywell.com/
+- type: SignUp
+  url: https://results.everlywell.com/register
+- type: Login
+  url: https://secure.everlywell.com/login
+- type: TermsOfService
+  url: https://www.everlywell.com/terms-of-use/
+- type: PrivacyPolicy
+  url: https://www.everlywell.com/privacy-policy/
+- type: GitHubOrganization
+  url: https://github.com/EverlyWell
+- type: Careers
+  url: https://www.everlywell.com/careers/
+- type: Enterprise
+  url: https://www.everlyhealthsolutions.com/
+- type: SecondaryMarket
   url: https://www.hiive.com/securities/everly-health-stock
+- type: WellKnown
+  url: well-known/everly-health-well-known.yml
+- type: Authentication
+  url: authentication/everly-health-authentication.yml
+- type: OAuthScopes
+  url: scopes/everly-health-scopes.yml
+- type: Conformance
+  url: conformance/everly-health-conformance.yml
+- type: DomainSecurity
+  url: security/everly-health-domain-security.yml
+- type: LLMsTxt
+  url: llms/everly-health-llms.txt
+x-enrichment:
+  date: '2026-08-04'
+  status: enriched
+  artifacts_added: 8
+  pass: local-v1

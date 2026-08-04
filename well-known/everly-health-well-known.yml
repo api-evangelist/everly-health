@@ -1,0 +1,140 @@
+generated: '2026-08-04'
+method: searched
+source: https://secure.everlywell.com/.well-known/openid-configuration
+summary: >-
+  Everly Health serves a real, anonymously reachable OAuth 2.0 / OpenID Connect
+  discovery surface on its member login host (secure.everlywell.com), including a
+  live JWKS. No other well-known document was found on any Everly Health host. The
+  marketing hosts (everlyhealth.com, natalist.com, results.everlywell.com) answer
+  HTTP 200 with an HTML single-page-app shell for every /.well-known/* path — those
+  are catch-all false positives, not published documents, and are recorded below as
+  such.
+hosts:
+- host: https://secure.everlywell.com
+  role: member login / authorization server
+  documents:
+  - path: /.well-known/openid-configuration
+    status: 200
+    content_type: application/json
+    file: everly-health-openid-configuration.json
+    spec: OpenID Connect Discovery 1.0
+  - path: /.well-known/oauth-authorization-server
+    status: 200
+    content_type: application/json
+    file: everly-health-oauth-authorization-server.json
+    spec: RFC 8414
+    note: byte-identical payload to the openid-configuration document
+  - path: /jwks/signature
+    status: 200
+    content_type: application/json
+    spec: RFC 7517
+    note: live JWKS advertised by jwks_uri; not saved (rotating key material)
+  - path: /.well-known/oauth-protected-resource
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+  - path: /.well-known/mcp.json
+    status: 404
+  - path: /llms.txt
+    status: 404
+- host: https://www.everlywell.com
+  role: consumer website
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+  - path: /llms.txt
+    status: 404
+- host: https://everlyhealth.com
+  role: corporate site (301 to www.everlywell.com)
+  documents:
+  - path: /.well-known/security.txt
+    status: 200
+    content_type: text/html
+    valid: false
+    note: SPA catch-all — HTML shell returned for every path; not a published document
+  - path: /.well-known/agent-card.json
+    status: 200
+    content_type: text/html
+    valid: false
+    note: SPA catch-all — HTML, rejected
+  - path: /.well-known/agent.json
+    status: 200
+    content_type: text/html
+    valid: false
+    note: SPA catch-all — HTML, rejected
+  - path: /llms.txt
+    status: 200
+    content_type: text/html
+    valid: false
+    note: SPA catch-all — HTML, rejected
+- host: https://results.everlywell.com
+  role: kit registration / results app
+  documents:
+  - path: /.well-known/security.txt
+    status: 200
+    content_type: text/html
+    valid: false
+    note: SPA catch-all — HTML, rejected
+  - path: /.well-known/agent-card.json
+    status: 200
+    content_type: text/html
+    valid: false
+    note: SPA catch-all — HTML, rejected
+  - path: /.well-known/openid-configuration
+    status: 200
+    content_type: text/html
+    valid: false
+    note: SPA catch-all — HTML, rejected
+- host: https://natalist.com
+  role: Natalist brand storefront
+  documents:
+  - path: /.well-known/security.txt
+    status: 200
+    content_type: text/html
+    valid: false
+    note: SPA/storefront catch-all — HTML, rejected
+  - path: /.well-known/agent-card.json
+    status: 200
+    content_type: text/html
+    valid: false
+    note: SPA/storefront catch-all — HTML, rejected
+- host: https://api.everlyhealth.com
+  role: dangling DNS
+  documents:
+  - path: /
+    status: 530
+    note: Cloudflare error 1016 (origin DNS error) on every path — no live origin
+security_txt: null
+x-evidence:
+  fetched: '2026-08-04'
+  probed_hosts:
+  - everlyhealth.com
+  - www.everlyhealth.com
+  - everlywell.com
+  - www.everlywell.com
+  - secure.everlywell.com
+  - results.everlywell.com
+  - api.everlywell.com
+  - api.everlyhealth.com
+  - natalist.com
+  - everlyhealthsolutions.com

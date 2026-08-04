@@ -1,0 +1,89 @@
+generated: '2026-08-04'
+method: searched
+source: https://secure.everlywell.com/.well-known/openid-configuration
+note: >-
+  Conformance is asserted only where a fetched document proves it. Everly Health
+  publishes no OpenAPI, no API reference and no compliance/trust page, so most
+  cross-cutting standards below are recorded as not-evidenced rather than as failures.
+  HIPAA obligations almost certainly apply to this company as a matter of law, but no
+  public certification, attestation or trust-center page was found, so no compliance
+  claim is recorded here and no `Compliance` pointer is emitted.
+standards:
+- id: oauth2
+  conforms: true
+  evidence: >-
+    RFC 6749 authorization server with authorize/token/revoke/introspect endpoints
+    declared at https://secure.everlywell.com/.well-known/oauth-authorization-server
+- id: rfc8414-authorization-server-metadata
+  conforms: true
+  evidence: /.well-known/oauth-authorization-server returns 200 application/json
+- id: oidc-discovery
+  conforms: true
+  evidence: /.well-known/openid-configuration returns 200 with issuer, jwks_uri, userinfo_endpoint
+- id: oidc-core
+  conforms: true
+  evidence: response_types [code], id_token_signing_alg_values_supported [RS256], claims_supported present
+- id: rfc7517-jwks
+  conforms: true
+  evidence: jwks_uri https://secure.everlywell.com/jwks/signature returns 200 application/json RSA keys
+- id: rfc7636-pkce
+  conforms: true
+  evidence: code_challenge_methods_supported [plain, S256]
+  note: >-
+    `plain` is still advertised alongside S256; OAuth 2.1 requires S256 for public
+    clients.
+- id: rfc7009-token-revocation
+  conforms: true
+  evidence: revocation_endpoint https://secure.everlywell.com/oauth2/revoke
+- id: rfc7662-token-introspection
+  conforms: true
+  evidence: introspection_endpoint https://secure.everlywell.com/oauth2/introspect
+- id: rfc7591-dynamic-client-registration
+  conforms: false
+  evidence: no registration_endpoint in the discovery document
+- id: rfc9728-protected-resource-metadata
+  conforms: false
+  evidence: /.well-known/oauth-protected-resource returned 404
+- id: rfc9116-security-txt
+  conforms: false
+  evidence: /.well-known/security.txt returned 404 on every Everly Health host
+- id: oauth2.1
+  conforms: false
+  evidence: >-
+    grant_types_supported includes `password` (resource owner password credentials),
+    which OAuth 2.1 / RFC 9700 removes; code_challenge_methods_supported includes `plain`
+- id: openapi
+  conforms: false
+  evidence: no OpenAPI/Swagger found on any host or in the public GitHub org
+- id: asyncapi
+  conforms: false
+  evidence: no event, streaming or webhook surface published
+- id: fhir
+  conforms: false
+  evidence: not evidenced — no public FHIR endpoint, capability statement or claim found
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: not evidenced — no public error contract published
+- id: rfc8594-sunset-header
+  conforms: false
+  evidence: not evidenced — no deprecation or versioning policy published
+compliance_program:
+  published: false
+  trust_center: null
+  certifications: []
+  note: >-
+    No trust.everlywell.com, no /security, /compliance or /hipaa page (all 404), and no
+    named SOC 2 / ISO 27001 / HITRUST certification found on any public page. The
+    consumer-facing legal surface is limited to the privacy policy, the consumer health
+    data privacy notice and the terms of use.
+x-evidence:
+  fetched: '2026-08-04'
+  probes:
+  - {url: 'https://secure.everlywell.com/.well-known/openid-configuration', http_status: 200}
+  - {url: 'https://secure.everlywell.com/.well-known/oauth-authorization-server', http_status: 200}
+  - {url: 'https://secure.everlywell.com/jwks/signature', http_status: 200}
+  - {url: 'https://secure.everlywell.com/.well-known/oauth-protected-resource', http_status: 404}
+  - {url: 'https://www.everlywell.com/security/', http_status: 404}
+  - {url: 'https://www.everlywell.com/compliance/', http_status: 404}
+  - {url: 'https://www.everlywell.com/hipaa/', http_status: 404}
+  - {url: 'https://trust.everlywell.com/', http_status: 0, note: 'DNS does not resolve'}
