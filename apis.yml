@@ -7,9 +7,13 @@ description: 'Everly Health (legal name Everly Well, Inc.) is an Austin, Texas d
   and the Natalist fertility and pregnancy brand. Its catalog spans daily health, digestive,
   sexual, hormone and cancer-screening panels, paired with an affiliated telehealth
   provider network and the Eva AI platform for member engagement, care coordination
-  and support. Everly Health publishes no public developer portal, API reference, SDKs
-  or OpenAPI; the only machine-readable contract it serves anonymously is the OAuth
-  2.0 / OpenID Connect discovery surface behind its member login host.'
+  and support. Everly Health runs a real enterprise platform API for lab connectivity —
+  a live AWS API Gateway host at api.pwnhealth.com, documented in a ReadMe developer hub
+  titled "PWNHealth APIs" at docs.pwnhealth.com — but both are gated: the hub sits behind
+  a site-wide password wall and every API path except /ping returns 403 Missing
+  Authentication Token. No OpenAPI, SDK, AsyncAPI or agent card is published anonymously,
+  and the only machine-readable contract it serves openly is the OAuth 2.0 / OpenID
+  Connect discovery surface behind its member login host.'
 image: https://www.everlywell.com/icons/icon-512x512.png
 url: https://raw.githubusercontent.com/api-evangelist/everly-health/refs/heads/main/apis.yml
 x-type: company
@@ -54,6 +58,40 @@ apis:
     url: authentication/everly-health-authentication.yml
   - type: OAuthScopes
     url: scopes/everly-health-scopes.yml
+- aid: everly-health:pwnhealth-platform
+  name: Everly Health Solutions (PWNHealth) Platform API
+  description: 'The enterprise lab-connectivity and clinician-oversight API of Everly
+    Health Solutions, the former PWNHealth business Everlywell acquired in 2021. It is a
+    real, live API: https://api.pwnhealth.com is an AWS API Gateway origin behind
+    CloudFront, GET /ping returns HTTP 200 "healthy" anonymously, and a staging twin
+    answers at api-staging.pwnhealth.com. Every other path returns HTTP 403
+    {"message":"Missing Authentication Token"}. Its reference is a ReadMe-hosted developer
+    hub titled "PWNHealth APIs" at https://docs.pwnhealth.com/, which 302s every path to
+    /password?redirect=... — a site-wide password wall in place since at least 2019-08-03
+    per the Wayback Machine. Ownership is established by pwnhealth.com 301ing to
+    www.everlywell.com/enterprise/labs/. No OpenAPI, no SDK and no published rate limits or
+    pricing are reachable anonymously; everything recorded here was observed from live
+    probes on 2026-08-15, and nothing about the contract itself is asserted because
+    nothing about it could be read.'
+  humanURL: https://docs.pwnhealth.com/
+  baseURL: https://api.pwnhealth.com
+  tags:
+  - Healthcare
+  - Diagnostics
+  - Lab Testing
+  - Telehealth
+  - Enterprise
+  properties:
+  - type: Documentation
+    url: https://docs.pwnhealth.com/
+  - type: MCPServer
+    url: mcp/everly-health-mcp.yml
+  - type: RateLimits
+    url: rate-limits/everly-health-rate-limits.yml
+  - type: Plans
+    url: plans/everly-health-plans-pricing.yml
+  - type: Lifecycle
+    url: lifecycle/everly-health-lifecycle.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
@@ -96,8 +134,44 @@ common:
   url: security/everly-health-domain-security.yml
 - type: LLMsTxt
   url: llms/everly-health-llms.txt
+- type: Packages
+  url: packages/everly-health-packages.yml
+- type: Components
+  url: components/everly-health-components.yml
+- type: MCPServer
+  url: mcp/everly-health-mcp.yml
+- type: Lifecycle
+  url: lifecycle/everly-health-lifecycle.yml
+- type: Plans
+  url: plans/everly-health-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/everly-health-rate-limits.yml
+- type: Compliance
+  url: conformance/everly-health-conformance.yml
 x-enrichment:
-  date: '2026-08-04'
+  date: '2026-08-15'
   status: enriched
-  artifacts_added: 8
+  artifacts_added: 6
   pass: local-v1
+x-coverage:
+  state: gated
+  reason: customer-only-docs
+  detail: >-
+    Everly Health Solutions' developer hub — a ReadMe site whose own <title> is "PWNHealth
+    APIs" — 302s every path to /password?redirect=..., a site-wide password wall in place
+    since at least 2019, and the API host behind it answers 403 "Missing Authentication
+    Token" on everything except GET /ping.
+  evidence:
+  - url: https://docs.pwnhealth.com/
+    status: 302
+  - url: https://docs.pwnhealth.com/reference
+    status: 302
+  - url: https://docs.pwnhealth.com/openapi.json
+    status: 302
+  - url: https://api.pwnhealth.com/openapi.json
+    status: 403
+  - url: https://api.pwnhealth.com/ping
+    status: 200
+  - url: https://docs.pwnhealth.com/mcp
+    status: 401
+  checked: '2026-08-15'
