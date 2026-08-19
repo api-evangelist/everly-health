@@ -1,0 +1,86 @@
+generated: '2026-08-15'
+method: searched
+source: https://registry.npmjs.org/-/v1/search?text=everlywell
+note: >-
+  Everly Health publishes two first-party npm packages under the @everlywell scope. Both
+  are React/Chakra UI component libraries used to build the Everlywell consumer and
+  internal web surfaces — they are NOT API client libraries, and neither wraps any Everly
+  Health API. They are recorded here because they are genuinely published, genuinely
+  first-party, and actively maintained; they are deliberately NOT wired as `SDKs`, because
+  no first-party API SDK exists for any Everly Health API. PyPI, RubyGems, Packagist,
+  crates.io, NuGet, Maven Central and pkg.go.dev were checked for `everlywell`,
+  `everly-health` and `pwnhealth` and returned nothing. The public GitHub organization
+  (github.com/EverlyWell, 26 public repos) carries only interview challenges, marketing
+  glue and forks of other vendors' SDKs (Stripe, PayPal, Checkout.com, Spree) — no
+  first-party client library.
+packages:
+- language: javascript
+  registry: npm
+  name: '@everlywell/ui-kit'
+  url: https://www.npmjs.com/package/@everlywell/ui-kit
+  install: npm install @everlywell/ui-kit
+  official: true
+  kind: ui-component-library
+  version: 1.48.1
+  published: '2026-08-14'
+  first_published: '2023-12-14'
+  release_count: 197
+  license: null
+  repository: null
+  peer_stack:
+  - '@chakra-ui/react'
+  - '@emotion/react'
+  - '@emotion/styled'
+  - framer-motion
+  note: >-
+    Everly Health's shared design system. Published from GitLab CI/CD under the company's
+    own npm scope with ~26 Everly Health maintainer accounts. No README, description,
+    license or repository field is set on the registry record, so it is publicly
+    installable but not publicly documented.
+- language: javascript
+  registry: npm
+  name: '@everlywell/consumer-ui'
+  url: https://www.npmjs.com/package/@everlywell/consumer-ui
+  install: npm install @everlywell/consumer-ui
+  official: true
+  kind: ui-component-library
+  version: 1.48.1
+  published: '2026-08-14'
+  first_published: '2024-10-01'
+  release_count: 90
+  license: null
+  repository: null
+  peer_stack:
+  - '@chakra-ui/react'
+  - '@emotion/react'
+  - '@emotion/styled'
+  - dompurify
+  - framer-motion
+  - jsdom
+  note: >-
+    Consumer-surface component library, versioned in lockstep with @everlywell/ui-kit
+    (both at 1.48.1, both published 2026-08-14). Same registry-metadata gaps as ui-kit.
+coverage:
+  package_count: 2
+  official_count: 2
+  api_client_sdk_count: 0
+  registries_checked:
+  - npm
+  - pypi
+  - rubygems
+  - packagist
+  - crates.io
+  - nuget
+  - maven-central
+  - pkg.go.dev
+x-evidence:
+  fetched: '2026-08-15'
+  probes:
+  - {url: 'https://registry.npmjs.org/-/v1/search?text=everlywell', http_status: 200, result: '2 packages'}
+  - {url: 'https://registry.npmjs.org/@everlywell/ui-kit', http_status: 200}
+  - {url: 'https://registry.npmjs.org/@everlywell/consumer-ui', http_status: 200}
+  - {url: 'https://pypi.org/pypi/everlywell/json', http_status: 404}
+  - {url: 'https://pypi.org/pypi/pwnhealth/json', http_status: 404}
+  - {url: 'https://rubygems.org/api/v1/gems/everlywell.json', http_status: 404}
+  - {url: 'https://rubygems.org/api/v1/gems/pwnhealth.json', http_status: 404}
+  - {url: 'https://api.github.com/orgs/EverlyWell/repos', http_status: 200, result: '26 repos, no first-party client library'}

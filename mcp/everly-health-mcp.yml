@@ -1,0 +1,52 @@
+generated: '2026-08-15'
+method: probed
+source: https://docs.pwnhealth.com/mcp
+status: published
+provider_authored: false
+summary: >-
+  A live Model Context Protocol endpoint answers at https://docs.pwnhealth.com/mcp — the
+  developer hub host for Everly Health Solutions (the former PWNHealth business, whose
+  pwnhealth.com now 301s to everlywell.com/enterprise/labs/, establishing ownership).
+  A GET returns the plain-text handshake "This URL can only be accessed with a MCP client."
+  A JSON-RPC POST of tools/list returns HTTP 401 with
+  {"jsonrpc":"2.0","error":{"code":-32001,"message":"Authorization required"}} — the tool
+  list and every inputSchema are auth-gated, so no tool inventory could be captured.
+  This endpoint is the documentation MCP server auto-provisioned by ReadMe for the
+  "PWNHealth APIs" hub; it is served on Everly Health's own host but was not authored by
+  Everly Health, and it is behind the same site password as the hub itself. Recorded as
+  probed reality, with that provenance stated rather than implied.
+deployment:
+  mode: remote
+  endpoint: https://docs.pwnhealth.com/mcp
+  install: null
+  package: null
+  auth: unknown
+  verified: probed
+  note: >-
+    Remote HTTP endpoint only. No stdio package, no npx installer, and no MCP server of
+    any kind published under the @everlywell npm scope or in github.com/EverlyWell.
+    `auth: unknown` because the 401 carries no WWW-Authenticate challenge and no
+    /.well-known/oauth-protected-resource or /.well-known/oauth-authorization-server is
+    served on docs.pwnhealth.com (both 404), so the token type could not be established
+    anonymously.
+tools:
+  captured: false
+  count: null
+  note: >-
+    tools/list is gated. No tool names, descriptions or input schemas were obtained.
+    NOTHING is derived or guessed here — Everly Health publishes no OpenAPI from which a
+    candidate tool list could honestly be built.
+related_surfaces:
+  developer_hub: https://docs.pwnhealth.com/
+  developer_hub_title: PWNHealth APIs
+  developer_hub_gate: site-wide password wall (/password?redirect=...)
+  api_host: https://api.pwnhealth.com
+x-evidence:
+  fetched: '2026-08-15'
+  probes:
+  - {url: 'https://docs.pwnhealth.com/mcp', method: GET, http_status: 200, content_type: 'text/html',
+     body: 'This URL can only be accessed with a MCP client.'}
+  - {url: 'https://docs.pwnhealth.com/mcp', method: 'POST tools/list', http_status: 401,
+     content_type: 'application/json', body: '{"jsonrpc":"2.0","error":{"code":-32001,"message":"Authorization required"},"id":null}'}
+  - {url: 'https://docs.pwnhealth.com/.well-known/oauth-authorization-server', http_status: 404}
+  - {url: 'https://docs.pwnhealth.com/.well-known/api-catalog', http_status: 404}

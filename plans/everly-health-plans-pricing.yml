@@ -1,0 +1,30 @@
+generated: '2026-08-15'
+method: searched
+source: https://www.everlywell.com/enterprise/home/
+plan_count: 0
+note: >-
+  Everly Health publishes no API plans, tiers, quotas or developer pricing of any kind.
+  www.everlywell.com/pricing/ returns 404. The consumer surface prices individual at-home
+  test kits and a membership, but that is retail product pricing for a physical
+  diagnostic kit — it buys no API access and is deliberately not recorded as a plan here.
+  The enterprise surface (Everly Health Solutions, formerly PWNHealth) is a
+  contact-sales motion: the enterprise pages carry a "Contact us" form and no published
+  rate card. Whatever commercial terms govern the platform API at api.pwnhealth.com are
+  negotiated in a contract, and any pricing documentation would sit inside the
+  password-gated developer hub at docs.pwnhealth.com.
+plans: []
+commercial_model:
+  self_serve_api_signup: false
+  contact_sales_only: true
+  contact_url: https://www.everlywell.com/enterprise/home/
+  consumer_product_pricing: https://www.everlywell.com/products/
+  note: >-
+    Recorded as an honest zero: not "we did not look", but "we looked and the provider
+    publishes none".
+x-evidence:
+  fetched: '2026-08-15'
+  probes:
+  - {url: 'https://www.everlywell.com/pricing/', http_status: 404}
+  - {url: 'https://www.everlywell.com/enterprise/', http_status: 200, note: 'redirects to /enterprise/home/; contact-sales only'}
+  - {url: 'https://www.everlyhealthsolutions.com/', http_status: 200, note: 'redirects to www.everlywell.com/enterprise/home'}
+  - {url: 'https://docs.pwnhealth.com/', http_status: 302, note: 'password wall'}

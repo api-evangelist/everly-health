@@ -1,0 +1,52 @@
+generated: '2026-08-15'
+method: searched
+source: https://www.everlywell.com/
+note: >-
+  This artifact records an absence that was actually probed, not an assumption. Everly
+  Health publishes no versioning policy, no deprecation policy, no Sunset/Deprecation
+  header guidance (RFC 8594), no SLA, no status page and no changelog on any host it
+  controls. Whatever lifecycle policy governs the Everly Health Solutions / PWNHealth
+  platform API lives inside the password-gated developer hub at docs.pwnhealth.com and
+  could not be read. No `StatusPage` and no `Deprecation` pointer is emitted, because
+  neither exists publicly.
+versioning:
+  documented: false
+  scheme: unknown
+  note: >-
+    api.pwnhealth.com answers 403 "Missing Authentication Token" identically for /v1, /v2
+    and every other path (AWS API Gateway default), so a path-versioning scheme cannot be
+    asserted from the probe — 403 on /v1 is not evidence that /v1 exists.
+deprecation_policy:
+  published: false
+  url: null
+  sunset_header: unknown
+  deprecation_header: unknown
+sla:
+  published: false
+  url: null
+status_page:
+  present: false
+  url: null
+  probed:
+  - {url: 'https://status.everlywell.com/', result: 'DNS does not resolve'}
+  - {url: 'https://www.everlywell.com/status/', http_status: 404}
+changelog:
+  published: false
+  url: null
+  note: >-
+    No dated changelog, release-notes or "what's new" page on www.everlywell.com,
+    www.everlyhealthsolutions.com or support.everlywell.com. The hub at
+    docs.pwnhealth.com may carry one behind its password wall.
+deprecated_operations:
+  derivable: false
+  note: no OpenAPI is published, so no deprecated operations can be derived.
+support:
+  help_center: https://support.everlywell.com/
+  note: consumer support only; no developer support channel, forum or community found.
+x-evidence:
+  fetched: '2026-08-15'
+  probes:
+  - {url: 'https://status.everlywell.com/', http_status: 0, note: 'DNS does not resolve'}
+  - {url: 'https://www.everlywell.com/status/', http_status: 404}
+  - {url: 'https://docs.pwnhealth.com/', http_status: 302, note: 'redirects to /password?redirect=/'}
+  - {url: 'https://support.everlywell.com/', http_status: 200}

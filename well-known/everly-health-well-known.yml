@@ -1,4 +1,4 @@
-generated: '2026-08-04'
+generated: '2026-08-15'
 method: searched
 source: https://secure.everlywell.com/.well-known/openid-configuration
 summary: >-
@@ -124,9 +124,91 @@ hosts:
   - path: /
     status: 530
     note: Cloudflare error 1016 (origin DNS error) on every path — no live origin
+- host: https://api.pwnhealth.com
+  role: >-
+    Everly Health Solutions (former PWNHealth) platform API — live AWS API Gateway origin
+    behind CloudFront. Ownership: pwnhealth.com 301s to www.everlywell.com/enterprise/labs/.
+  added: '2026-08-15'
+  documents:
+  - path: /ping
+    status: 200
+    content_type: null
+    body: healthy
+    note: the only anonymously reachable endpoint on the host
+  - path: /.well-known/security.txt
+    status: 403
+    note: AWS API Gateway MissingAuthenticationTokenException — gateway answers 403 for every unknown path
+  - path: /.well-known/oauth-authorization-server
+    status: 403
+  - path: /.well-known/openid-configuration
+    status: 403
+  - path: /.well-known/agent-card.json
+    status: 403
+  - path: /openapi.json
+    status: 403
+  - path: /swagger.json
+    status: 403
+  - path: /v1/openapi.json
+    status: 403
+  - path: /api-docs
+    status: 403
+  - path: /graphql
+    status: 403
+- host: https://docs.pwnhealth.com
+  role: 'developer hub for the platform API — ReadMe-hosted, title "PWNHealth APIs", behind a site-wide password wall'
+  added: '2026-08-15'
+  documents:
+  - path: /
+    status: 302
+    note: 302 to /password?redirect=/ — password-gated since at least 2019-08-03 per the Wayback Machine
+  - path: /mcp
+    status: 200
+    content_type: text/html
+    body: This URL can only be accessed with a MCP client.
+    note: >-
+      live MCP endpoint; JSON-RPC tools/list returns 401 "Authorization required" —
+      see mcp/everly-health-mcp.yml
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/security.txt
+    status: 200
+    content_type: text/html
+    valid: false
+    note: ReadMe hub catch-all — HTML password page, rejected
+  - path: /.well-known/agent-card.json
+    status: 200
+    content_type: text/html
+    valid: false
+    note: ReadMe hub catch-all — HTML password page, rejected
+  - path: /.well-known/agent.json
+    status: 200
+    content_type: text/html
+    valid: false
+    note: ReadMe hub catch-all — HTML password page, rejected
+  - path: /llms.txt
+    status: 200
+    content_type: text/html
+    valid: false
+    note: ReadMe hub catch-all — HTML password page, rejected
+- host: https://pwnhealth.com
+  role: legacy brand domain (301 to www.everlywell.com/enterprise/labs/)
+  added: '2026-08-15'
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /llms.txt
+    status: 404
 security_txt: null
 x-evidence:
-  fetched: '2026-08-04'
+  fetched: '2026-08-15'
   probed_hosts:
   - everlyhealth.com
   - www.everlyhealth.com
@@ -138,3 +220,14 @@ x-evidence:
   - api.everlyhealth.com
   - natalist.com
   - everlyhealthsolutions.com
+  - www.everlyhealthsolutions.com
+  - api.everlyhealthsolutions.com
+  - developer.everlywell.com
+  - developers.everlywell.com
+  - pwnhealth.com
+  - api.pwnhealth.com
+  - api-staging.pwnhealth.com
+  - docs.pwnhealth.com
+  - developer.pwnhealth.com
+  - sandbox.pwnhealth.com
+  - portal.pwnhealth.com

@@ -1,0 +1,46 @@
+generated: '2026-08-15'
+method: searched
+source: https://www.npmjs.com/package/@everlywell/ui-kit
+note: >-
+  Everly Health ships no embeddable/hosted UI surface for third parties — no drop-in
+  widget, no hosted checkout element, no embedded dashboard, and no script-tag or CDN
+  distribution was found on any Everly Health host. What it does publish is its own
+  internal React design system, openly installable from npm under the @everlywell scope.
+  Recorded here as a component surface because the packages are genuinely public and
+  first-party; it is a first-party design system, not a third-party integration product.
+families:
+- family: Design system
+  distribution: npm
+  loader: null
+  components:
+  - name: '@everlywell/ui-kit'
+    url: https://www.npmjs.com/package/@everlywell/ui-kit
+    version: 1.48.1
+    published: '2026-08-14'
+    framework: React
+    built_on: Chakra UI + Emotion + Framer Motion
+    documented: false
+    note: >-
+      No README, description, license, repository or homepage on the registry record and
+      no public documentation site — installable but undocumented.
+  - name: '@everlywell/consumer-ui'
+    url: https://www.npmjs.com/package/@everlywell/consumer-ui
+    version: 1.48.1
+    published: '2026-08-14'
+    framework: React
+    built_on: Chakra UI + Emotion + Framer Motion + DOMPurify
+    documented: false
+    note: Consumer-surface components, versioned in lockstep with ui-kit.
+embeddable_third_party_surface:
+  present: false
+  note: >-
+    No embed/widget/element documentation found on www.everlywell.com,
+    www.everlyhealthsolutions.com or the gated PWNHealth developer hub's public shell.
+coverage:
+  family_count: 1
+  component_count: 2
+x-evidence:
+  fetched: '2026-08-15'
+  probes:
+  - {url: 'https://registry.npmjs.org/@everlywell/ui-kit', http_status: 200}
+  - {url: 'https://registry.npmjs.org/@everlywell/consumer-ui', http_status: 200}

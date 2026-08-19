@@ -1,0 +1,29 @@
+generated: '2026-08-15'
+method: searched
+source: https://api.pwnhealth.com/
+limit_count: 0
+note: >-
+  Everly Health documents no rate limits publicly. The only anonymously reachable
+  endpoint on the platform API host is GET https://api.pwnhealth.com/ping (HTTP 200,
+  body "healthy"); it returns no rate-limit headers at all. Every other path answers
+  HTTP 403 {"message":"Missing Authentication Token"} — the AWS API Gateway default for
+  an unauthenticated request — with no X-RateLimit-*, RateLimit-* or Retry-After header
+  present. Whatever throttling AWS API Gateway usage plans apply behind the token is
+  invisible anonymously and would be documented, if anywhere, inside the password-gated
+  hub at docs.pwnhealth.com. The identity host (secure.everlywell.com) likewise returns
+  no rate-limit headers on its discovery documents.
+limits: []
+response_headers:
+  observed: []
+  note: >-
+    No rate-limit signalling header was observed on any anonymously reachable Everly
+    Health response. An agent has no runtime backoff signal to read.
+exhaustion_status_code: unknown
+retry_after: unknown
+x-evidence:
+  fetched: '2026-08-15'
+  probes:
+  - {url: 'https://api.pwnhealth.com/ping', http_status: 200, note: 'body "healthy"; no rate-limit headers'}
+  - {url: 'https://api.pwnhealth.com/', http_status: 403, note: 'AWS API Gateway MissingAuthenticationTokenException; no rate-limit headers'}
+  - {url: 'https://secure.everlywell.com/.well-known/openid-configuration', http_status: 200, note: 'no rate-limit headers'}
+  - {url: 'https://docs.pwnhealth.com/', http_status: 302, note: 'password wall — any documented limits are inside'}
