@@ -48,6 +48,10 @@ apis:
   baseURL: https://secure.everlywell.com
   tags:
   - Identity
+  - Authentication
+  - OpenID Connect
+  tags_raw:
+  - Identity
   - OAuth
   - OpenID Connect
   - Authentication
