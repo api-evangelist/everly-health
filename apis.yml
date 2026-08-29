@@ -14,6 +14,17 @@ description: 'Everly Health (legal name Everly Well, Inc.) is an Austin, Texas d
   Authentication Token. No OpenAPI, SDK, AsyncAPI or agent card is published anonymously,
   and the only machine-readable contract it serves openly is the OAuth 2.0 / OpenID
   Connect discovery surface behind its member login host.'
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: false
+  label: Hosted service · you call their endpoint
+  confidence: medium
+  source:
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 image: https://www.everlywell.com/icons/icon-512x512.png
 url: https://raw.githubusercontent.com/api-evangelist/everly-health/refs/heads/main/apis.yml
 x-type: company
