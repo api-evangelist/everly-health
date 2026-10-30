@@ -64,5 +64,117 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Everly Health is a company surfaced via the API Evangelist harvest backlog (source: secondary-market) and added to the network as a stub for full-pipeline profiling.
-- https://www.hiive.com/securities/everly-health-stock
+Everly Health (legal name Everly Well, Inc.) is an Austin, Texas digital health company that operates the Everlywell consumer brand for at-home lab collection and testing, Everly Health Solutions (the former PWNHealth / Home Access Health businesses) for enterprise lab connectivity, clinician-network oversight and results delivery, and the Natalist fertility and pregnancy brand. Its catalog spans daily health, digestive, sexual, hormone and cancer-screening panels, paired with an affiliated telehealth provider network and the Eva AI platform for member engagement, care coordination and support. Everly Health runs a real enterprise platform API for lab connectivity — a live AWS API Gateway host at api.pwnhealth.com, documented in a ReadMe developer hub titled "PWNHealth APIs" at docs.pwnhealth.com — but both are gated: the hub sits behind a site-wide password wall and every API path except /ping returns 403 Missing Authentication Token. No OpenAPI, SDK, AsyncAPI or agent card is published anonymously, and the only machine-readable contract it serves openly is the OAuth 2.0 / OpenID Connect discovery surface behind its member login host.
+
+**Areas:** Company · Health · Healthcare · Digital Health · Diagnostics · Lab Testing · Telehealth · Consumer Health · Identity
+
+## Everly Health on APIs.io
+
+Everything profiled for Everly Health is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/everly-health/](https://apis.io/providers/everly-health/)** — or go straight to one of the APIs or properties below.
+
+### APIs (2)
+
+- [Everly Health Identity (OAuth 2.0 / OpenID Connect)](https://apis.io/apis/everly-health/identity/) — The OAuth 2.0 authorization server and OpenID Connect provider that fronts the Everlywell member account. It is not a documented developer product — Everly…
+- [Everly Health Solutions (PWNHealth) Platform API](https://apis.io/apis/everly-health/pwnhealth-platform/) — The enterprise lab-connectivity and clinician-oversight API of Everly Health Solutions, the former PWNHealth business Everlywell acquired in 2021. It is a…
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### MCP servers (1)
+
+Model Context Protocol servers that expose the API to agents.
+
+- [everly-health-mcp.yml](https://apis.io/servers/everly-health/everly-health-mcp-yml/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Everly Health Authentication](https://apis.io/security/everly-health/everly-health-authentication/)
+- [Everly Health Domain Security](https://apis.io/security/everly-health/everly-health-domain-security/)
+
+#### OAuth scopes (1)
+
+The permissions the API asks for.
+
+- [Everly Health Scopes](https://apis.io/scopes/everly-health/everly-health-scopes/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Everly Health Plans Pricing](https://apis.io/plans/everly-health/everly-health-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Everly Health Rate Limits](https://apis.io/rate-limits/everly-health/everly-health-rate-limits/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.everlywell.com/)
+- [Sign up](https://results.everlywell.com/register)
+- [Support](https://support.everlywell.com/)
+- [Blog](https://www.everlywell.com/blog/)
+- [Terms of service](https://www.everlywell.com/terms-of-use/)
+- [Privacy policy](https://www.everlywell.com/privacy-policy/)
+- [GitHub](https://github.com/EverlyWell)
+
+## API Evangelist rating
+
+**Kin Score 24.9** — emerging · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 68.3 |
+| Contract quality | 0.0 |
+| Contract governance | 18.2 |
+| Operational transparency | 2.6 |
+| Developer ergonomics | 23.8 |
+| Access clarity | 35.5 |
+
+**Agent readiness 21.9** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | — |
+| Agentic Access | — |
+| Reversibility Documented | — |
+| MCP Server | verified |
+| Auth Clarity | served (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | documented (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | served (partial credit) |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | na |
+| Operation Distinctiveness | na |
+
+**Regulatory alignment 36.7** — Health
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/everly-health/](https://apis.io/providers/everly-health/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Everly Health: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/everly-health/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
